@@ -11,6 +11,13 @@ class Trening extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'datum',
+        'vreme',
+        'teniser_id',
+        'teren_id'
+    ];
+
     public function teniser()
     {
         return $this->belongsTo(Teniser::class);

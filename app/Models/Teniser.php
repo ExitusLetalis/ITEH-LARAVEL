@@ -10,6 +10,14 @@ class Teniser extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ime',
+        'prezime',
+        'drzava',
+        'godiste',
+        'rank'
+    ];
+
     public function treninzi()
     {
         return $this->hasMany(Trening::class);

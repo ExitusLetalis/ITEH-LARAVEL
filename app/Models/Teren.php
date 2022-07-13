@@ -10,6 +10,12 @@ class Teren extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'naziv',
+        'lokacija',
+        'kapacitet',
+    ];
+
     public function treninzi()
     {
         return $this->hasMany(Trening::class);
