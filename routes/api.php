@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TeniserController;
 use App\Http\Controllers\TerenController;
 use Illuminate\Http\Request;
@@ -16,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('teren', TerenController::class)->only('index', 'show', 'destroy', 'update');
-Route::resource('teniser', TeniserController::class)->only('index', 'show');
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
 
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::resource('teren', TerenController::class)->only('index', 'show', 'destroy', 'update');
+    Route::resource('teniser', TeniserController::class)->only('index', 'show');
+    Route::post('logout', [AuthController::class, 'logout']);
 });
